@@ -10,10 +10,13 @@
     {% for d in form %}
     <div>{{ d.label }}:{{ d }}{{ d.errors }}</div>
     {% endfor %}
-    <input type="submit">
+    <input type="submit"><input type="reset">
     <div>已报名：</div>
     {% for i in team %}
-        <p>{{ i.teamName }}</p>
+        <p>{{ i.teamName }}
+            {% if i.whetherSubmit %}已提交{% endif %}
+            {% if not i.whetherSubmit %}未提交{% endif %}
+        </p>
     {% endfor %}
 
 </form>
