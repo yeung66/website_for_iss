@@ -33,7 +33,7 @@ class Team(models.Model):
     department5 = models.CharField(max_length=25, blank=True)
 
     #submit
-    URL = models.CharField(max_length=100, blank=True)
+    URL = models.URLField(max_length=100, blank=True)
     sharePassword = models.CharField(max_length=20, blank=True)
 
     def __unicode__(self):

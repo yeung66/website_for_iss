@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import Team
-from form import submitForm
+from form import submitForm, submitWorksForm
 # Create your views here.
 def index(request):
     teamAlreadySignedUp=Team.objects.all()
@@ -35,3 +35,23 @@ def index(request):
     else:
         form = submitForm()
     return render(request, 'index.html', {'form':form, 'team':teamAlreadySignedUp})
+
+def submitWork(request):
+    if request.method =='POST':
+        form = submitWorksForm(request.POST)
+        if form.is_valid():
+            teamName = form.cleaned_data['teamName']
+            team = Team.objects.get(teamName=teamName)
+            if form.cleaned_data['submitPassword'] != team.submitPassword:
+                return HttpResponse('提交密码错误')
+            else:
+                Team.objects.filter(teamName=teamName).update(
+                    URL=form.cleaned_data['URL'],
+                    sharePassword = form.cleaned_data['sharePassword'],
+                    whetherSubmit = True
+                )
+                return HttpResponse('提交作品成功')
+
+    else:
+        form = submitWorksForm()
+    return render(request, 'submit.html', {'form':form})

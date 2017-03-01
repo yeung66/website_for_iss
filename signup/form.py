@@ -54,12 +54,30 @@ class submitForm(forms.Form):
 
     def clean_teamName(self):
         teamName = self.cleaned_data['teamName']
-        if not re.match(r'^[\u4e00-\u9fa5a-zA-Z]+$', teamName):
-            raise forms.ValidationError('队名中只能由汉字，字母,数字组成')
+        pattern = re.compile(u'[\u4e00-\u9fa5a-zA-Z0-9]')
+        if not re.match(pattern, teamName):
+            raise forms.ValidationError('队名中只能由汉字,字母,数字组成')
         try:
             Team.objects.get(teamName=teamName)
         except ObjectDoesNotExist:
             return teamName
         raise forms.ValidationError('该队名已经被使用')
+
+class submitWorksForm(forms.Form):
+    teamName = forms.CharField(label='队伍名称')
+    submitPassword = forms.CharField(label='提交密码', widget=forms.PasswordInput())
+    URL = forms.URLField(label='百度云链接')
+    sharePassword = forms.CharField(label='分享密码')
+
+    def clean_teamName(self):
+        teamName = self.cleaned_data['teamName']
+        try:
+            team = Team.objects.get(teamName=teamName)
+        except ObjectDoesNotExist:
+            raise forms.ValidationError('队伍尚未报名！')
+        if team.whetherSubmit:
+            raise forms.ValidationError('该队伍已提交作品')
+        return teamName
+
 
 
