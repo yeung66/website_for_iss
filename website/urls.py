@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from signup.views import index
+from signup.views import index, submitWork
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',index)
+    url(r'^$',index),
+    url(r'^submit/', submitWork),
 ]

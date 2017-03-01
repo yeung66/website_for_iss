@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<form method="post">
+{% csrf_token %}
+{% for i in form %}
+    <div>{{ i.label }} : {{ i }} {{ i.errors }}</div>
+
+{% endfor %}
+<input type="submit">
+</form>
 </body>
 </html>
