@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from models import Team
-from form import submitForm, submitWorksForm
+from form import submitForm
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 def index(request):
@@ -27,17 +27,9 @@ def notice_hack(request):
     return render(request, 'Notice3.html')
 
 
-def signup(request):
-    teamAlreadySignedUp=Team.objects.all()
-    form = submitForm()
-    state = request.GET.get('state', '')
-
-    return render(request, 'signup.html', {'form':form, 'team':teamAlreadySignedUp, 'state':state})
-
 def signup_crea(request):
     state = request.GET.get('state', '')
     team_alreadySignup = Team.objects.filter(type='软件创意大赛')
-    form_submit = submitWorksForm()
     if (request.method =='POST') & (not request.is_ajax()):
         form = submitForm(request.POST)
         department = {}
@@ -75,12 +67,11 @@ def signup_crea(request):
     return render(request, 'signup_crea.html', {'form':form,
                                                 'state':state,
                                                 'team':team_alreadySignup,
-                                                'form2':form_submit})
+                                                })
 
 def signup_shouji(request):
     state = request.GET.get('state', '')
     team_alreadySignup = Team.objects.filter(type='手机编程大赛')
-    form_submit = submitWorksForm()
     if request.method == 'POST':
         form = submitForm(request.POST)
         department = {}
@@ -118,13 +109,12 @@ def signup_shouji(request):
     return render(request, 'signup_shouji.html', {'form': form,
                                                 'state': state,
                                                 'team': team_alreadySignup,
-                                                'form2': form_submit})
+                                                })
 
 
 def signup_malasong(request):
     state = request.GET.get('state', '')
     team_alreadySignup = Team.objects.filter(type='马拉松')
-    form_submit = submitWorksForm()
     if request.method == 'POST':
         form = submitForm(request.POST)
         department = {}
@@ -162,7 +152,7 @@ def signup_malasong(request):
     return render(request, 'signup_malasong.html', {'form': form,
                                                   'state': state,
                                                   'team': team_alreadySignup,
-                                                  'form2': form_submit})
+                                                  })
 
 
 def submitWork(request):
