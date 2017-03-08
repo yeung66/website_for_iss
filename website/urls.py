@@ -15,10 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from signup.views import index, submitWork
+from signup.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',index),
-    url(r'^submit/', submitWork),
+    url(r'^$', index, name='index'),
+    url(r'^index', index),
+    url(r'^Creativity', intro_creativity, name='intro_creativity'),
+    url(r'^Mobile-coding', intro_mobile, name='intro_mobile'),
+    url(r'^Hackathon', intro_hack, name='intro_hack'),
+    url(r'^Notice1', notice_crea, name='notice_crea'),
+    url(r'^Notice2', notice_mobile, name='notice_mobile'),
+    url(r'^Notice3', notice_hack, name='notice_hack'),
+
+    url(r'^submitWork', submitWork, name='submitWork'),
+    url(r'^signup_crea', signup_crea, name='signup_crea'),
+    url(r'^signup_malasong', signup_malasong, name='signup_malasong'),
+    url(r'signup_shouji', signup_shouji, name='signup_shouji'),
 ]

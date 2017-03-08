@@ -1,0 +1,29 @@
+{% extends 'SoftCrea.html' %}
+
+    {% block state %}{{ state }}{% endblock %}
+
+    {% block form_header %}{% csrf_token %}{% endblock %}
+    {% block teamname %}{{ form.teamName }}{{ form.teamName.errors }}{% endblock %}
+    {% block phone %}{{ form.phone }}{% endblock %}
+    {% block email %}{{ form.email }}{% endblock %}
+    {% block password %}{{ form.submitPassword }}{{ form.submitPassword.errors }}{% endblock %}
+    {% block member1 %}{{ form.member1 }}{% endblock %}
+    {% block id1 %}{{ form.ID1 }}{% endblock %}
+    {% block member2 %}{{ form.member2 }}{% endblock %}
+    {% block id2 %}{{ form.ID2 }}{% endblock %}
+    {% block member3 %}{{ form.member3 }}{% endblock %}
+    {% block id3 %}{{ form.ID3 }}{% endblock %}
+    {% block member4 %}{{ form.member4 }}{% endblock %}
+    {% block id4 %}{{ form.ID4 }}{% endblock %}
+    {% block member5 %}{{ form.member5 }}{% endblock %}
+    {% block id5 %}{{ form.ID5 }}{% endblock %}
+
+    <div>已报名：</div>
+    {% for i in team %}
+        <p>{{ i.teamName }}
+            {{ i.member1 }}
+            {% if i.whetherSubmit %}已提交{% endif %}
+            {% if not i.whetherSubmit %}未提交{% endif %}
+        </p>
+    {% endfor %}
+

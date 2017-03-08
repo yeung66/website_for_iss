@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8" />
+    <title>Sign up</title>
+    <link href="{% static 'css/Notice.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        body{
+            text-align:center;
+            margin:0;
+            padding:0;
+            background:#f2f2f2;
+            font: 16px/2em 'Roboto', Helvetica, 'Helvetica Neue', 'Microsoft Yahei', 'WenQuanYi Micro Hei', '华文细黑', 'Microsoft JhengHei', SimSun, sans-serif;
+            color: #000000;
+            overflow: auto;
+            min-width: 960px;
+        }
+        body[data-content="fs"]{
+            overflow:hidden;
+        }
+        .bg_gra{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background-image: -webkit-linear-gradient(#21272d, #424f5a);
+            background-image: -moz-linear-gradient(#21272d, #424f5a);
+            background-image: -o-linear-gradient(#21272d, #424f5a);
+            background-image: linear-gradient(#21272d, #424f5a);
+        }
+        .title{
+            text-align:center;
+            font-size: 5em;
+            line-height: 1.5em;
+            color: #000000;
+            letter-spacing: 0.15em;
+            -webkit-transition: font 0.5s ease;
+            -o-transition: font 0.5s ease;
+            transition: font 0.5s ease;
+        }
+        .subTitle{
+            text-align: center;
+            font-size: 3em;
+            font-weight: 300;
+            line-height: 1.5em;
+            letter-spacing: 0.02em;
+            color: #000000;
+            -webkit-transition: font 0.5s ease;
+            -o-transition: font 0.5s ease;
+            transition: font 0.5s ease;
+            padding-top:50px;
+        }
+        .subTitle span{
+            font-size:0.6em;
+        }
+        .header{
+            z-index:-1;
+            -webkit-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            padding-top: 320px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .tTitle{
+            position:relative;
+            bottom:25px;
+            font-size:30px;
+            font-family:'Microsoft YaHei UI';
+            font-weight:500;
+        }
+        .content{
+            text-align:center;
+        }
+        .navBg{
+            position:relative;
+            margin-top:90px;
+            width:960px;
+            height:680px;
+            background-image:url("{% static 'image/phone.png' %}");
+            background-size:cover;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        .nav{
+            top:265px;
+            width:828px;
+            position:relative;
+            display:inline-block;
+            left:9px;
+            background-color:rgb(204,211,212);
+            height:180px;
+        }
+        .nav::after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+        .nav a{
+            position:relative;
+            width:33.3%;
+            height:100%;
+            display:block;
+            float:left;
+            transition:background 0.25s;
+        }
+        .navAf{
+            left:1px;
+        }
+        .nav a:hover{
+            background-color: #55606a;
+        }
+        .content{
+            position:relative;
+            top:-1px;
+            width:960px;
+            background-image:url("{% static 'image/pxe1.png' %}");
+            background-size:contain;
+            left: 50%;
+            transform: translate(-50%,0);
+            margin:0;
+            padding:20px 70px 10px 90px;
+            box-sizing:border-box;
+            text-align:left;
+        }
+        .content h4{
+            font-size:46px;
+            line-height:55px;
+            font-weight:500;
+            margin:10px 0 30px;
+        }
+        .content hr{
+            border:2px solid #000000;
+        }
+        .content p{
+            font-size:20px;
+            margin-bottom:50px;
+        }
+        .content p a{
+            text-decoration:underline;
+            color: rgb(0, 0, 0);
+        }
+        .content p a:hover{
+            color: #000000;
+        }
+        .footer{
+            position:relative;
+            top:-2px;
+            background-image:url("{% static 'image/bottom.png' %}");
+            left: 50%;
+            transform: translate(-50%,0);
+            width:960px;
+            background-size:contain;
+            height:300px;
+            background-repeat:no-repeat;
+        }
+        ul{
+            list-style:none;
+            margin:0;
+            padding:0;
+        }
+        li h5{
+            font-size:24px;
+            font-weight:500;
+        }
+        .liMem{
+            padding-left:40px;
+            font-size:22px;
+            margin-bottom:20px;
+        }
+        .form-key{
+            display:inline-block;
+            width:140px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], select {
+            position:relative;
+            top:-4px;
+            border: 2px solid #ffffff;
+            width: 316px;
+            max-width: 100%;
+            padding: 0 5px;
+            height: 36px;
+            outline: none;
+            border-radius: 2px;
+            -webkit-transition: border 0.25s, box-shadow 0.25s;
+            -o-transition: border 0.25s, box-shadow 0.25s;
+            transition: border 0.25s, box-shadow 0.25s;
+            vertical-align: top;
+            box-sizing: border-box;
+            border: solid 1px #DDDDDD;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+            border: 2px solid #ff2400;
+            box-shadow: 0 0 1px 2px #ffffff;
+        }
+        h6{
+            text-decoration:underline;
+            font-size:22px;
+            font-weight:300;
+            margin:-10px 0 20px;
+        }
+        .groupInfo{
+            margin-bottom:30px;
+        }
+        .button{
+            background: #80ba8e;
+            color: white;
+            transition:all 0.25s;
+            padding: 10px 35px;
+            border: 0;
+            border-radius: 2px;
+            outline: none;
+            font-size:18px;
+            /*color:rgb(65, 66, 67);*/
+            margin-bottom:30px;
+            position:relative;
+            left:50%;
+            transform:translate(-50%,0);
+            font-family: "Microsoft YaHei UI";
+            border-radius: 5px;
+        }
+        .button:hover{
+            background:#7cb088;
+            /*color:white;*/
+        }
+        h5{
+            font-size:26px;
+            font-weight:500;
+            margin:30px 0 20px;
+        }
+        
+        .title::before{
+            width:100%;
+            cursor:default;
+        }
+        .tTitle::before{
+            width:100%;
+            cursor:default;
+        }
+        body[data-content="creativity"] .title::before{
+            content:"手机编程大赛";
+        }
+        body[data-content="creativity"] .tTitle::before{
+            content:"Mobile Phone Programming Contest";
+        }
+        body[data-content="phone"] .title::before{
+            content:"手机编程大赛";
+        }
+        body[data-content="phone"] .tTitle::before{
+            content:"Mobile Phone Programming Contest";
+        }
+        body[data-content="marathon"] .title::before{
+            content:"编程马拉松";
+        }
+        body[data-content="marathon"] .tTitle::before{
+            content:"Marathon of Programming";
+        }
+        .nav a{
+            text-decoration:none;
+            color:rgb(65, 66, 67);
+            font-size:26px;
+            transition:all 0.25s;
+        }
+        .nav a:hover{
+            color:white;
+        }
+        .ep2{background:url("{% static 'image/logo2.png' %}")}
+        .ep3{background:url("{% static 'image/logo3.png' %}")}
+        .ep{
+            position:relative;
+            display:block;
+            height:80px;
+            width:80px;
+            background-size:contain;
+            background-repeat:no-repeat;
+            left:50%;
+            transform:translate(-50%,0);
+        }
+        .ep1{
+            position:relative;
+            left:50%;
+            transform:translate(-50%,0);
+            background:url("{% static 'image/logo1.png' %}");
+            height:80px;
+            width:120px;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+        .inform{
+            display:block;
+            font-size:16px;
+            transition:all 0.3s;
+            color:coral;
+            position:absolute;
+            left:145px;
+            top:30px;
+        }
+        label{position:relative;}
+        #teamName[data-state="normal"] .inform{
+            display:none;
+        }
+        #teamName input{transition:margin 0.2s;}
+        #teamName[data-state="warning"] input{
+            margin-bottom:30px;
+        }
+        #form .button{
+            left:200px;
+            transform:none;
+        }
+
+
+
+
+
+    </style>
+    <script language="javascript">
+        //平台、设备和操作系统
+        var system ={
+            win : false,
+            mac : false,
+            xll : false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到m.yijile.com页面
+        if(system.win||system.mac||system.xll){
+        }else{
+//            window.location.href="SoftCrea_m.html";
+        }
+    </script>
+
+    <link href="{% static 'css/Notice2.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body data-content="creativity" data-state="normal">
+
+
+
+
+
+<!-- Header -->
+<div id="header">
+    <!--<div class="img500px"><img src="images/logo.png"></div>-->
+    <div class="title500px_container">
+        <!--<p class="title500px">Creativity</p>-->
+        <!--<p class="title500px" id="title500pxiss">WHUISS</p>-->
+    </div>
+    <div id="nav-wrapper">
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li class="active"><a href="index.html">Homepage</a></li>
+                <li><a href="Creativity.html">Creativity</a></li>
+                <li><a href="Mobile-coding.html">Mobile-coding</a></li>
+                <li><a href="Hackathon.html">Hackathon</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+
+        <!-- Logo -->
+        <div id="logo">
+            <h1><a href="#">Notice for Mobile-coding</a></h1>
+            <span class="tag">WHUISS</span>
+        </div>
+    </div>
+</div>
+<!-- Header -->
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="bg_gra"></div>-->
+    <div id="rootDiv">
+        <!--<div class="subTitle">活动通知-->
+            <!--<span>报名入口</span>-->
+        <!--</div>-->
+        <div class="navBg">
+
+            <header class="header">
+                <div class="title"></div>
+                <h2 class="tTitle"></h2>
+                <img src="{% static 'image/logo2.png' %}">
+            </header>
+        </div>
+        <div class="content">
+            <br/>
+            <br/>
+            <h4>讲师名单</h4>
+            <hr />
+            <p id="text">带星号的为必填项目，报名请仔细阅读<br/>
+                带星号的为必填项目，报名请仔细阅读<br/>
+                带星号的为必填项目，报名请仔细阅读<br/>
+                带星号的为必填项目，报名请仔细阅读<br/></p>
+            <p id="time">WHUISS 2017.03.06</p>
+            <h4>入围名单</h4>
+            <hr />
+            <p id="text2">带星号的为必填项目，报名请仔细阅读
+                带星号的为必填项目，报名请仔细阅读
+                带星号的为必填项目，报名请仔细阅读带星号的为必填项目，报名请仔细阅读带星号的为必填项目，报名请仔细阅读带星号的为必填项目，报名请仔细阅读带星号的为必填项目，报名请仔细阅读带星号的为必填项目，报名请仔细阅读带星号的为必填项目，报名请仔细阅读带星号的为必填项目，报名请仔细阅读
+                带星号的为必填项目，报名请仔细阅读<br/></p>
+            <p id="time2">WHUISS 2017.03.06</p>
+        </div>
+        <div class="footer"></div>
+    </div>
+
+
+
+
+<!-- Copyright -->
+<div id="copyright">
+    <div class="container">
+        主办方：武汉大学国际软件学院学生会网络部
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+﻿body[data-state="submit"]{
+    overflow:hidden;
+}
+body[data-state="normal"] #submit{
+    display:none;
+}
+body[data-state="submit"] #submit{
+}
+#submit{
+    display:block;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background:rgba(61,68,69,0.9);
+}
+.parCon{
+    display:inline-block;
+    width:30%;
+    box-sizing:border-box;
+    margin:0 10px;
+}
+.parBut{
+    width:100%;
+    display:block;
+    margin:0 10px 30px;
+    /*border:2px solid rgb(203, 196, 196);*/
+    box-sizing:border-box;
+    border-radius:10px;
+    text-decoration:none;
+    text-align:center;
+    padding:10px;
+    color:white;
+    font-size:20px;
+    transition:all 0.3s;
+    outline:none;
+    background-color: #80ba8e;
+}
+.parBut:hover{
+    background:#7cb088;
+    /*color:rgb(66,79,90);*/
+    color: white;
+}
+.parTeam{
+    margin:20px 10px 20px;
+    padding:10px 20px;
+    display:inline-block;
+    border:2px solid rgb(203, 196, 196);
+    border-radius:10px;
+    width:100%;
+    box-sizing:border-box;
+}
+.parTeam span{
+    display:block;
+    margin:10px 0;
+    font-size:18px;
+}
+.submCon .title{
+    margin-top:20px;
+    color:rgb(66,79,90);
+    font-size:40px;
+}
+.submCon .tTitle{
+    font-size:18px;
+}
+.submCon{
+    color:rgb(66,79,90);
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    height:700px;
+    width:500px;
+    background:rgb(203,196,196);
+    border-radius:10px;
+    padding:20px 30px;
+    box-sizing:border-box;
+}
+.submCon hr{
+    margin-top:-16px;
+    border:2px solid rgb(66,79,90);
+}
+.submInfo{
+    text-align:left;
+}
+.submInfo h4{
+    font-size:22px;
+    font-weight:500;
+    margin-bottom:10px;
+}
+.submInfo p{
+    font-size:18px;
+    margin-top:10px;
+    position:relative;
+    left:10px;
+    margin-bottom:30px;
+}
+.submInput{
+    text-align:left;
+    position:relative;
+    left:10px;
+}
+.submInput span{
+    display:inline-block;
+    width:100px;
+    margin-bottom:20px;
+}
+.submInput .button{
+    margin-top:20px;
+}
+.shutBut{
+    display:block;
+    position:fixed;
+    height:40px;
+    width:40px;
+    border-radius:50%;
+    right:30px;
+    top:30px;
+    background:rgb(66,79,90);
+    border:2px solid rgb(203,196,196);
+    transition:all 0.3s;
+}
+.shutBut::before{
+    display:block;
+    content:"";
+    position:absolute;
+    transition:all 0.3s;
+    transform:rotate(45deg);
+    border:2px solid rgb(203,196,196);
+    height:20px;
+    left:18px;
+    top:8px;
+}
+.shutBut::after{
+    display:block;
+    content:"";
+    position:absolute;
+    transition:all 0.3s;
+    transform:rotate(-45deg);
+    border:2px solid rgb(203,196,196);
+    height:20px;
+    left:18px;
+    top:8px;
+}
+.shutBut:hover,.shutBut:hover::before,.shutBut:hover::after{
+    border-color:rgb(66,79,90);
+    background:rgb(203,196,196);
+}

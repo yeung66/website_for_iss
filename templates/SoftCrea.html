@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8" />
+    <title>Sign up</title>
+    <link href="{% static "css/sign.css" %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <style>
+        body{
+            text-align:center;
+            margin:0;
+            padding:0;
+            background:#f2f2f2;
+            font: 16px/2em 'Roboto', Helvetica, 'Helvetica Neue', 'Microsoft Yahei', 'WenQuanYi Micro Hei', '华文细黑', 'Microsoft JhengHei', SimSun, sans-serif;
+            color: #000000;
+            overflow: auto;
+            min-width: 960px;
+        }
+        body[data-content="fs"]{
+            overflow:hidden;
+        }
+        .bg_gra{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background-image: -webkit-linear-gradient(#21272d, #424f5a);
+            background-image: -moz-linear-gradient(#21272d, #424f5a);
+            background-image: -o-linear-gradient(#21272d, #424f5a);
+            background-image: linear-gradient(#21272d, #424f5a);
+        }
+        .title{
+            text-align:center;
+            font-size: 5em;
+            line-height: 1.5em;
+            color: #000000;
+            letter-spacing: 0.15em;
+            -webkit-transition: font 0.5s ease;
+            -o-transition: font 0.5s ease;
+            transition: font 0.5s ease;
+        }
+        .subTitle{
+            text-align: center;
+            font-size: 3em;
+            font-weight: 300;
+            line-height: 1.5em;
+            letter-spacing: 0.02em;
+            color: #000000;
+            -webkit-transition: font 0.5s ease;
+            -o-transition: font 0.5s ease;
+            transition: font 0.5s ease;
+            padding-top:50px;
+        }
+        .subTitle span{
+            font-size:0.6em;
+        }
+        .header{
+            z-index:-1;
+            -webkit-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            padding-top: 320px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .tTitle{
+            position:relative;
+            bottom:25px;
+            font-size:30px;
+            font-family:'Microsoft YaHei UI';
+            font-weight:500;
+        }
+        .content{
+            text-align:center;
+        }
+        .navBg{
+            position:relative;
+            margin-top:90px;
+            width:960px;
+            height:680px;
+            background-image:url("{% static "image/phone.png" %}");
+            background-size:cover;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        .nav{
+            top:265px;
+            width:828px;
+            position:relative;
+            display:inline-block;
+            left:9px;
+            background-color:rgb(204,211,212);
+            height:180px;
+        }
+        .nav::after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+        .nav a{
+            position:relative;
+            width:33.3%;
+            height:100%;
+            display:block;
+            float:left;
+            transition:background 0.25s;
+        }
+        .navAf{
+            left:1px;
+        }
+        .nav a:hover{
+            background-color: #55606a;
+        }
+        .content{
+            position:relative;
+            top:-1px;
+            width:960px;
+            background-image:url("{% static "image/pxe1.png" %}");
+            background-size:contain;
+            left: 50%;
+            transform: translate(-50%,0);
+            margin:0;
+            padding:20px 70px 10px 90px;
+            box-sizing:border-box;
+            text-align:left;
+        }
+        .content h4{
+            font-size:46px;
+            line-height:55px;
+            font-weight:500;
+            margin:10px 0 30px;
+        }
+        .content hr{
+            border:2px solid #000000;
+        }
+        .content p{
+            font-size:20px;
+            margin-bottom:50px;
+        }
+        .content p a{
+            text-decoration:underline;
+            color: rgb(0, 0, 0);
+        }
+        .content p a:hover{
+            color: #000000;
+        }
+        .footer{
+            position:relative;
+            top:-2px;
+            background-image:url("{% static "image/bottom.png" %}");
+            left: 50%;
+            transform: translate(-50%,0);
+            width:960px;
+            background-size:contain;
+            height:300px;
+            background-repeat:no-repeat;
+        }
+        ul{
+            list-style:none;
+            margin:0;
+            padding:0;
+        }
+        li h5{
+            font-size:24px;
+            font-weight:500;
+        }
+        .liMem{
+            padding-left:40px;
+            font-size:22px;
+            margin-bottom:20px;
+        }
+        .form-key{
+            display:inline-block;
+            width:140px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], select {
+            position:relative;
+            top:-4px;
+            border: 2px solid #ffffff;
+            width: 316px;
+            max-width: 100%;
+            padding: 0 5px;
+            height: 36px;
+            outline: none;
+            border-radius: 2px;
+            -webkit-transition: border 0.25s, box-shadow 0.25s;
+            -o-transition: border 0.25s, box-shadow 0.25s;
+            transition: border 0.25s, box-shadow 0.25s;
+            vertical-align: top;
+            box-sizing: border-box;
+            border: solid 1px #DDDDDD;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+            border: 2px solid #ff2400;
+            box-shadow: 0 0 1px 2px #ffffff;
+        }
+        h6{
+            text-decoration:underline;
+            font-size:22px;
+            font-weight:300;
+            margin:-10px 0 20px;
+        }
+        .groupInfo{
+            margin-bottom:30px;
+        }
+        .button{
+            background: #80ba8e;
+            color: white;
+            transition:all 0.25s;
+            padding: 10px 35px;
+            border: 0;
+            border-radius: 2px;
+            outline: none;
+            font-size:18px;
+            /*color:rgb(65, 66, 67);*/
+            margin-bottom:30px;
+            position:relative;
+            left:50%;
+            transform:translate(-50%,0);
+            font-family: "Microsoft YaHei UI";
+            border-radius: 5px;
+        }
+        .button:hover{
+            background:#7cb088;
+            /*color:white;*/
+        }
+        h5{
+            font-size:26px;
+            font-weight:500;
+            margin:30px 0 20px;
+        }
+        
+        .title::before{
+            width:100%;
+            cursor:default;
+        }
+        .tTitle::before{
+            width:100%;
+            cursor:default;
+        }
+        body[data-content="creativity"] .title::before{
+            content:"软件创意大赛";
+        }
+        body[data-content="creativity"] .tTitle::before{
+            content:"Software Creativity Contest";
+        }
+        body[data-content="phone"] .title::before{
+            content:"手机编程大赛";
+        }
+        body[data-content="phone"] .tTitle::before{
+            content:"Mobile Phone Programming Contest";
+        }
+        body[data-content="marathon"] .title::before{
+            content:"编程马拉松";
+        }
+        body[data-content="marathon"] .tTitle::before{
+            content:"Marathon of Programming";
+        }
+        .nav a{
+            text-decoration:none;
+            color:rgb(65, 66, 67);
+            font-size:26px;
+            transition:all 0.25s;
+        }
+        .nav a:hover{
+            color:white;
+        }
+        .ep2{background:url("{% static "image/logo2.png" %}")}
+        .ep3{background:url("{% static 'image/logo3.png' %}")}
+        .ep{
+            position:relative;
+            display:block;
+            height:80px;
+            width:80px;
+            background-size:contain;
+            background-repeat:no-repeat;
+            left:50%;
+            transform:translate(-50%,0);
+        }
+        .ep1{
+            position:relative;
+            left:50%;
+            transform:translate(-50%,0);
+            background:url("{% static 'image/logo3.png' %}");
+            height:80px;
+            width:120px;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+        .inform{
+            display:block;
+            font-size:16px;
+            transition:all 0.3s;
+            color:coral;
+            position:absolute;
+            left:145px;
+            top:30px;
+        }
+        label{position:relative;}
+        #teamName[data-state="normal"] .inform{
+            display:none;
+        }
+        #teamName input{transition:margin 0.2s;}
+        #teamName[data-state="warning"] input{
+            margin-bottom:30px;
+        }
+        #form .button{
+            left:200px;
+            transform:none;
+        }
+
+label{position:relative;}
+select{
+    transition:all 0.3s!important;
+}
+.else{
+    display:none;
+    position:absolute!important;
+    left:147px;
+    top:50px!important;
+}
+label[data-state="else"] select{
+    margin-bottom:70px;
+}
+label[data-state="else"] .else{
+    display:block;
+}
+
+
+
+    </style>
+    <script language="javascript">
+        //平台、设备和操作系统
+        var system ={
+            win : false,
+            mac : false,
+            xll : false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到m.yijile.com页面
+        if(system.win||system.mac||system.xll){
+        }else{
+//            window.location.href="SoftCrea_m.html";
+        }
+    </script>
+
+    <link href="{% static "css/SoftCrea.css" %}" type="text/css" rel="stylesheet">
+</head>
+<body data-content="{% block type %}creativity{% endblock %}" data-state="normal">
+
+
+
+
+<!-- Header -->
+<div id="header">
+    <!--<div class="img500px"><img src="images/logo.png"></div>-->
+    <div class="title500px_container">
+        <!--<p class="title500px">Creativity</p>-->
+        <!--<p class="title500px" id="title500pxiss">WHUISS</p>-->
+    </div>
+    <div id="nav-wrapper">
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li class="active"><a href="../index.html">Homepage</a></li>
+                <li><a href="../Creativity.html">Creativity</a></li>
+                <li><a href="../Mobile-coding.html">Mobile-coding</a></li>
+                <li><a href="../Hackathon.html">Hackathon</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+
+        <!-- Logo -->
+        <div id="logo">
+            <h1><a href="#">Sign up</a></h1>
+            <span class="tag">WHUISS</span>
+        </div>
+    </div>
+</div>
+<!-- Header -->
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="bg_gra"></div>-->
+    <div id="rootDiv">
+        <div class="subTitle">武汉大学软件文化节 <span>报名入口</span></div>
+        <div class="navBg">
+            <div class="nav">
+                <a class="navAf" href="{% url 'signup_crea' %}" data-target="creativity"  "><p class="ep1"></p><p>创意</p></a>
+                <a href="{% url 'signup_shouji' %}" data-target="phone" ><p class="ep ep2"></p><p>手机</p></a>
+                <a href="{% url 'signup_malasong' %}" data-target="marathon"  ><p class="ep ep3"></p><p>马拉松</p></a>
+            </div>
+            <header class="header">
+                <div class="title"></div>
+                <h2 class="tTitle"></h2>
+            </header>
+        </div>
+        <div class="content">
+            <h4>
+                报名
+            </h4>
+            <hr />
+            <p>带星号的为必填项目，报名请仔细阅读 <a href="请填写大赛规则URL">大赛规则</a></p>
+            <form id="form" class="sform"  method="post">
+                {% csrf_token %}
+
+                <ul class="fList">
+                    <li class="teamInfo">
+                        <h5>小组基本信息 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% block state %}
+
+                                {% endblock %}{% block error %}{% endblock %}</h5>
+                        <div class="liMem">
+                            <label id="teamName" data-state="normal">
+                                <span class="form-key">队伍名 * </span>
+                                {% block teamname %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                            </label>
+                        </div>
+                        <div class="liMem">
+                            <label>
+                                <span class="form-key">联系电话 *</span>
+                                {% block phone %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                            </label>
+                        </div>
+                        <div class="liMem">
+                            <label>
+                                <span class="form-key">联系邮箱 * </span>
+                                {% block email %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                            </label>
+                        </div>
+                        <div class="liMem">
+                            <label>
+                                <span class="form-key">提交密码 * </span>
+                                {% block password %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                            </label>
+                        </div>
+                    </li>
+                    <li class="memberInfo">
+                        <h5>小组成员基本信息</h5>
+                        <div class="groupInfo">
+                            <h6>队长</h6>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">姓名 * </span>
+                                    {% block member1 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学号 * </span>
+                                    {% block id1 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学院 * </span>
+                                     <select class="hidden-input" name="department1" style="display: inline;" >
+                                        <option value="" selected="selected" disabled="disabled"></option>
+                                        <option value="弘毅学堂">弘毅学堂</option>
+                                        <option value="马克思主义学院">马克思主义学院</option>
+                                        <option value="政治与公共管理学院">政治与公共管理学院</option>
+                                        <option value="社会学系">社会学系</option>
+                                        <option value="WTO 学院">WTO 学院</option>
+                                        <option value="信息管理学院">信息管理学院</option>
+                                        <option value="经济与管理学院">经济与管理学院</option>
+                                        <option value="外国语言文学学院">外国语言文学学院</option>
+                                        <option value="法学院">法学院</option>
+                                        <option value="数学与统计学院">数学与统计学院</option>
+                                        <option value="物理科学与技术学院">物理科学与技术学院</option>
+                                        <option value="化学与分子科学学院">化学与分子科学学院</option>
+                                        <option value="生命科学学院">生命科学学院</option>
+                                        <option value="资源与环境科学学院">资源与环境科学学院</option>
+                                        <option value="测绘学院">测绘学院</option>
+                                        <option value="土木建设工程学院">土木建设工程学院</option>
+                                        <option value="动力与机械学院">动力与机械学院</option>
+                                        <option value="电气工程学院">电气工程学院</option>
+                                        <option value="水利水电学院">水利水电学院</option>
+                                        <option value="药学院">药学院</option>
+                                        <option value="医学院">医学院</option>
+                                        <option value="城市设计学院">城市设计学院</option>
+                                        <option value="电子信息学院">电子信息学院</option>
+                                        <option value="印刷与包装系">印刷与包装系</option>
+                                        <option value="遥感信息工程学院">遥感信息工程学院</option>
+                                        <option value="测绘遥感信息工程国重">测绘遥感信息工程国重</option>
+                                        <option value="公共卫生学院">公共卫生学院</option>
+                                        <option value="口腔医学院">口腔医学院</option>
+                                        <option value="哲学学院">哲学学院</option>
+                                        <option value="历史学院">历史学院</option>
+                                        <option value="文学院">文学院</option>
+                                        <option value="艺术学系">艺术学系</option>
+                                        <option value="教育科学学院">教育科学学院</option>
+                                        <option value="HOPE 护理学院">HOPE 护理学院</option>
+                                        <option value="基础医学院">基础医学院</option>
+                                        <option value="新闻与传播学院">新闻与传播学院</option>
+                                        <option value="国学院">国学院</option>
+                                        <option value="第一临床学院">第一临床学院</option>
+                                        <option value="继续教育学院">继续教育学院</option>
+                                        <option value="医学职业技术学院">医学职业技术学院</option>
+                                        <option value="第二临床学院">第二临床学院</option>
+                                        <option value="else" id="else">其他（包括其他学校）</option>
+                                    </select>
+                                    <input class="else" name="department1_text" id="teamName"  type="text">
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="groupInfo">
+                            <h6>队员二</h6>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">姓名 </span>
+                                    {% block member2 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学号 </span>
+                                    {% block id2 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学院 </span>
+                                     <select class="hidden-input" name="department2" style="display: inline;">
+                                        <option value="" selected="selected" disabled="disabled"></option>
+                                        <option value="弘毅学堂">弘毅学堂</option>
+                                        <option value="马克思主义学院">马克思主义学院</option>
+                                        <option value="政治与公共管理学院">政治与公共管理学院</option>
+                                        <option value="社会学系">社会学系</option>
+                                        <option value="WTO 学院">WTO 学院</option>
+                                        <option value="信息管理学院">信息管理学院</option>
+                                        <option value="经济与管理学院">经济与管理学院</option>
+                                        <option value="外国语言文学学院">外国语言文学学院</option>
+                                        <option value="法学院">法学院</option>
+                                        <option value="数学与统计学院">数学与统计学院</option>
+                                        <option value="物理科学与技术学院">物理科学与技术学院</option>
+                                        <option value="化学与分子科学学院">化学与分子科学学院</option>
+                                        <option value="生命科学学院">生命科学学院</option>
+                                        <option value="资源与环境科学学院">资源与环境科学学院</option>
+                                        <option value="测绘学院">测绘学院</option>
+                                        <option value="土木建设工程学院">土木建设工程学院</option>
+                                        <option value="动力与机械学院">动力与机械学院</option>
+                                        <option value="电气工程学院">电气工程学院</option>
+                                        <option value="水利水电学院">水利水电学院</option>
+                                        <option value="药学院">药学院</option>
+                                        <option value="医学院">医学院</option>
+                                        <option value="城市设计学院">城市设计学院</option>
+                                        <option value="电子信息学院">电子信息学院</option>
+                                        <option value="印刷与包装系">印刷与包装系</option>
+                                        <option value="遥感信息工程学院">遥感信息工程学院</option>
+                                        <option value="测绘遥感信息工程国重">测绘遥感信息工程国重</option>
+                                        <option value="公共卫生学院">公共卫生学院</option>
+                                        <option value="口腔医学院">口腔医学院</option>
+                                        <option value="哲学学院">哲学学院</option>
+                                        <option value="历史学院">历史学院</option>
+                                        <option value="文学院">文学院</option>
+                                        <option value="艺术学系">艺术学系</option>
+                                        <option value="教育科学学院">教育科学学院</option>
+                                        <option value="HOPE 护理学院">HOPE 护理学院</option>
+                                        <option value="基础医学院">基础医学院</option>
+                                        <option value="新闻与传播学院">新闻与传播学院</option>
+                                        <option value="国学院">国学院</option>
+                                        <option value="第一临床学院">第一临床学院</option>
+                                        <option value="继续教育学院">继续教育学院</option>
+                                        <option value="医学职业技术学院">医学职业技术学院</option>
+                                        <option value="第二临床学院">第二临床学院</option>
+                                        <option value="else" id="else">其他（包括其他学校）</option>
+                                    </select>
+                                    <input class="else" name="department2" id="teamName" type="text">
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="groupInfo">
+                            <h6>组员三</h6>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">姓名 </span>
+                                    {% block member3 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学号 </span>
+                                    {% block id3 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学院 </span>
+                                     <select class="hidden-input" name="department3" style="display: inline;">
+                                        <option value="" selected="selected" disabled="disabled"></option>
+                                        <option value="弘毅学堂">弘毅学堂</option>
+                                        <option value="马克思主义学院">马克思主义学院</option>
+                                        <option value="政治与公共管理学院">政治与公共管理学院</option>
+                                        <option value="社会学系">社会学系</option>
+                                        <option value="WTO 学院">WTO 学院</option>
+                                        <option value="信息管理学院">信息管理学院</option>
+                                        <option value="经济与管理学院">经济与管理学院</option>
+                                        <option value="外国语言文学学院">外国语言文学学院</option>
+                                        <option value="法学院">法学院</option>
+                                        <option value="数学与统计学院">数学与统计学院</option>
+                                        <option value="物理科学与技术学院">物理科学与技术学院</option>
+                                        <option value="化学与分子科学学院">化学与分子科学学院</option>
+                                        <option value="生命科学学院">生命科学学院</option>
+                                        <option value="资源与环境科学学院">资源与环境科学学院</option>
+                                        <option value="测绘学院">测绘学院</option>
+                                        <option value="土木建设工程学院">土木建设工程学院</option>
+                                        <option value="动力与机械学院">动力与机械学院</option>
+                                        <option value="电气工程学院">电气工程学院</option>
+                                        <option value="水利水电学院">水利水电学院</option>
+                                        <option value="药学院">药学院</option>
+                                        <option value="医学院">医学院</option>
+                                        <option value="城市设计学院">城市设计学院</option>
+                                        <option value="电子信息学院">电子信息学院</option>
+                                        <option value="印刷与包装系">印刷与包装系</option>
+                                        <option value="遥感信息工程学院">遥感信息工程学院</option>
+                                        <option value="测绘遥感信息工程国重">测绘遥感信息工程国重</option>
+                                        <option value="公共卫生学院">公共卫生学院</option>
+                                        <option value="口腔医学院">口腔医学院</option>
+                                        <option value="哲学学院">哲学学院</option>
+                                        <option value="历史学院">历史学院</option>
+                                        <option value="文学院">文学院</option>
+                                        <option value="艺术学系">艺术学系</option>
+                                        <option value="教育科学学院">教育科学学院</option>
+                                        <option value="HOPE 护理学院">HOPE 护理学院</option>
+                                        <option value="基础医学院">基础医学院</option>
+                                        <option value="新闻与传播学院">新闻与传播学院</option>
+                                        <option value="国学院">国学院</option>
+                                        <option value="第一临床学院">第一临床学院</option>
+                                        <option value="继续教育学院">继续教育学院</option>
+                                        <option value="医学职业技术学院">医学职业技术学院</option>
+                                        <option value="第二临床学院">第二临床学院</option>
+                                        <option value="else" id="else">其他（包括其他学校）</option>
+                                    </select>
+                                    <input class="else" name="department3" id="teamName"  type="text">
+
+                            </div>
+                        </div>
+                        <div class="groupInfo">
+                            <h6>队员四</h6>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">姓名 </span>
+                                    {% block member4 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学号 </span>
+                                    {% block id4 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学院 </span>
+                                     <select class="hidden-input" name="department4" style="display: inline;">
+                                        <option value="" selected="selected" disabled="disabled"></option>
+                                        <option value="弘毅学堂">弘毅学堂</option>
+                                        <option value="马克思主义学院">马克思主义学院</option>
+                                        <option value="政治与公共管理学院">政治与公共管理学院</option>
+                                        <option value="社会学系">社会学系</option>
+                                        <option value="WTO 学院">WTO 学院</option>
+                                        <option value="信息管理学院">信息管理学院</option>
+                                        <option value="经济与管理学院">经济与管理学院</option>
+                                        <option value="外国语言文学学院">外国语言文学学院</option>
+                                        <option value="法学院">法学院</option>
+                                        <option value="数学与统计学院">数学与统计学院</option>
+                                        <option value="物理科学与技术学院">物理科学与技术学院</option>
+                                        <option value="化学与分子科学学院">化学与分子科学学院</option>
+                                        <option value="生命科学学院">生命科学学院</option>
+                                        <option value="资源与环境科学学院">资源与环境科学学院</option>
+                                        <option value="测绘学院">测绘学院</option>
+                                        <option value="土木建设工程学院">土木建设工程学院</option>
+                                        <option value="动力与机械学院">动力与机械学院</option>
+                                        <option value="电气工程学院">电气工程学院</option>
+                                        <option value="水利水电学院">水利水电学院</option>
+                                        <option value="药学院">药学院</option>
+                                        <option value="医学院">医学院</option>
+                                        <option value="城市设计学院">城市设计学院</option>
+                                        <option value="电子信息学院">电子信息学院</option>
+                                        <option value="印刷与包装系">印刷与包装系</option>
+                                        <option value="遥感信息工程学院">遥感信息工程学院</option>
+                                        <option value="测绘遥感信息工程国重">测绘遥感信息工程国重</option>
+                                        <option value="公共卫生学院">公共卫生学院</option>
+                                        <option value="口腔医学院">口腔医学院</option>
+                                        <option value="哲学学院">哲学学院</option>
+                                        <option value="历史学院">历史学院</option>
+                                        <option value="文学院">文学院</option>
+                                        <option value="艺术学系">艺术学系</option>
+                                        <option value="教育科学学院">教育科学学院</option>
+                                        <option value="HOPE 护理学院">HOPE 护理学院</option>
+                                        <option value="基础医学院">基础医学院</option>
+                                        <option value="新闻与传播学院">新闻与传播学院</option>
+                                        <option value="国学院">国学院</option>
+                                        <option value="第一临床学院">第一临床学院</option>
+                                        <option value="继续教育学院">继续教育学院</option>
+                                        <option value="医学职业技术学院">医学职业技术学院</option>
+                                        <option value="第二临床学院">第二临床学院</option>
+                                        <option value="else" id="else">其他（包括其他学校）</option>
+                                    </select>
+                                    <input class="else" name="department4" id="teamName"  type="text">
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="groupInfo">
+                            <h6>队员五</h6>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">姓名 </span>
+                                    {% block member5 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学号 </span>
+                                    {% block id5 %}
+                                <input name="teamName" maxlength="10" required="required" type="text" onblur="showHint(this.value)">
+                                {% endblock %}
+                                </label>
+                            </div>
+                            <div class="liMem">
+                                <label>
+                                    <span class="form-key">学院 </span>
+                                     <select class="hidden-input" name="department5" style="display: inline;" >
+                                        <option value="" selected="selected" disabled="disabled"></option>
+                                        <option value="弘毅学堂">弘毅学堂</option>
+                                        <option value="马克思主义学院">马克思主义学院</option>
+                                        <option value="政治与公共管理学院">政治与公共管理学院</option>
+                                        <option value="社会学系">社会学系</option>
+                                        <option value="WTO 学院">WTO 学院</option>
+                                        <option value="信息管理学院">信息管理学院</option>
+                                        <option value="经济与管理学院">经济与管理学院</option>
+                                        <option value="外国语言文学学院">外国语言文学学院</option>
+                                        <option value="法学院">法学院</option>
+                                        <option value="数学与统计学院">数学与统计学院</option>
+                                        <option value="物理科学与技术学院">物理科学与技术学院</option>
+                                        <option value="化学与分子科学学院">化学与分子科学学院</option>
+                                        <option value="生命科学学院">生命科学学院</option>
+                                        <option value="资源与环境科学学院">资源与环境科学学院</option>
+                                        <option value="测绘学院">测绘学院</option>
+                                        <option value="土木建设工程学院">土木建设工程学院</option>
+                                        <option value="动力与机械学院">动力与机械学院</option>
+                                        <option value="电气工程学院">电气工程学院</option>
+                                        <option value="水利水电学院">水利水电学院</option>
+                                        <option value="药学院">药学院</option>
+                                        <option value="医学院">医学院</option>
+                                        <option value="城市设计学院">城市设计学院</option>
+                                        <option value="电子信息学院">电子信息学院</option>
+                                        <option value="印刷与包装系">印刷与包装系</option>
+                                        <option value="遥感信息工程学院">遥感信息工程学院</option>
+                                        <option value="测绘遥感信息工程国重">测绘遥感信息工程国重</option>
+                                        <option value="公共卫生学院">公共卫生学院</option>
+                                        <option value="口腔医学院">口腔医学院</option>
+                                        <option value="哲学学院">哲学学院</option>
+                                        <option value="历史学院">历史学院</option>
+                                        <option value="文学院">文学院</option>
+                                        <option value="艺术学系">艺术学系</option>
+                                        <option value="教育科学学院">教育科学学院</option>
+                                        <option value="HOPE 护理学院">HOPE 护理学院</option>
+                                        <option value="基础医学院">基础医学院</option>
+                                        <option value="新闻与传播学院">新闻与传播学院</option>
+                                        <option value="国学院">国学院</option>
+                                        <option value="第一临床学院">第一临床学院</option>
+                                        <option value="继续教育学院">继续教育学院</option>
+                                        <option value="医学职业技术学院">医学职业技术学院</option>
+                                        <option value="第二临床学院">第二临床学院</option>
+                                        <option value="else" id="else">其他（包括其他学校）</option>
+                                    </select>
+                                    <input class="else" name="department5" id="teamName"  type="text">
+
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <button type="submit" class="button">立即参加</button>
+            </form>
+            <div id="participate">
+                <h5>参赛队伍</h5>
+                <hr />
+                <div id="accept">
+                    {% block showTeam %}
+                    <div class="parCon" dName="请输入队名ID">
+                        <div class="parTeam">
+                            <span>队名</span>
+                            <hr />
+                            <span>队长：</span>
+                            <span>提交状态</span>
+                        </div>
+                        <a href="javascript:;" class="parBut">提交作品</a>
+                    </div>
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+    <div id="submit">
+        <div class="submCon">
+            <div class="title"></div>
+            <h2 class="tTitle"></h2>
+            <hr />
+            <div class="submInfo">
+                <h4>提交说明</h4>
+                <p>
+                    1.参赛选手将作品按要求打包成[队伍.zip/rar]上传到百<br />
+                    度网盘并填写下面的分享链接和密码<br />
+                    2.提交密码为报名时输入的提交密码<br />
+                </p>
+            </div>
+            <form class="submInput" action="{% url 'submitWork' %}" method="post" id="submit_form">
+                {% csrf_token %}
+                <label>
+                    <span>队名</span>
+                    <input name="teamName2" id="teamName2" type="text" required />
+                </label>
+                <label>
+                    <span>提交密码</span>
+                    <input name="submitPassword2" id="submitPassword2" type="password" required />
+                </label>
+                <label>
+                    <span>百度云链接</span>
+                    <input name="URL" id='URL'type="text" required />
+                </label>
+                <label>
+                    <span>分享密码</span>
+                    <input name="sharePassword" id="sharePassword" type="password" required />
+                </label>
+                <button class="button" onclick="ajax_submit()">提交信息</button>
+            </form>
+        </div>
+        <a href="javascript:;" class="shutBut"></a>
+    </div>
+    <script>
+    var frm = $('#submit_form');
+    frm.submit(function (ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                alert(data);
+            }
+        });
+
+        ev.preventDefault();
+    });
+    </script>
+    <script>
+        function showHint(str) {
+            document.getElementById("teamName").setAttribute("data-state", "normal");
+            var xmlhttp;
+            if (str.length == 0) {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            }
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    if (xmlhttp.responseText == "Yes") {//请把检测存在情况的返回值设定为“Yes”
+                        document.getElementById("teamName").setAttribute("data-state", "warning");
+                    }
+                }
+            }
+            xmlhttp.open("GET", 请输入检测路径 + str, true);
+            xmlhttp.send();
+        }
+    </script>
+    <script>
+        function changeClick(thf) {
+            var tt = thf.getAttribute("data-target");
+            if (tt != document.body.getAttribute("data-content")) {
+                document.body.setAttribute("data-content", tt);
+                document.getElementById("form").setAttribute("action", thf.getAttribute("acTarget"));
+                document.getElementById("accept").innerHTML = "";
+                showTeam(tt);
+            }
+        }
+    </script>
+    <script src="{% static "js/Script1.js" %}"></script>
+
+
+
+
+<!-- Copyright -->
+<div id="copyright">
+    <div class="container">
+        主办方：武汉大学国际软件学院学生会网络部
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+#logo1{
+    width: 70%;
+}
+#logo2{
+    width: 50%;
+}
+#logo3{
+    width: 50%;
+}
+#title1{
+    font-family: "Microsoft YaHei UI";
+}
+#title2{
+     font-family: "Microsoft YaHei UI";
+}
+.info{
+    font-family: "Microsoft YaHei UI";
+}
+
+
+.signup{
+    /*margin-top: 50px;*/
+    /*margin: 0px auto 0 auto;*/
+/*padding-top: 0px;*/
+    padding: 0;
+}
+
+.signup a{
+    font-size: 1.2em;
+    transition: 0.5s;
+    /*border: 3px solid black;*/
+    border-radius: 5px;
+    padding: 8px 40px;
+    background-color: #80ba8e;
+    color: white;
+}
+.signup a:hover{
+    text-decoration: none;
+    background-color: #7cb088;
+}
+
+#hr{
+    margin-top: 3em;
+}
+
+@media (max-width: 500px) {
+    .signup a{
+        padding: 8px 35%;
+    }
+}
+
+
+
+
+
+
+
+
+@media (min-width: 500px){
+    #header1{
+        display: none;
+    }
+}
+
+
+
+
+
+
+

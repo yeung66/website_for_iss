@@ -1,0 +1,55 @@
+{% extends 'SoftCrea.html' %}
+
+{% block type %}creativity{% endblock %}
+{% block state %}{{ state }}{% endblock %}
+
+
+    {% block teamname %}{{ form.teamName }}
+        <span class="form-key" style="font-size: 10px"> {{ form.teamName.errors }}</span>{% endblock %}
+    {% block phone %}{{ form.phone }}
+        <span class="form-key" style="font-size: 15px"> {{ form.phone.errors }}{% endblock %}
+    {% block email %}{{ form.email }}
+        <span class="form-key" style="font-size: 15px"> {{ form.email.errors }}{% endblock %}
+    {% block password %}{{ form.submitPassword }}
+        <span class="form-key" style="font-size: 15px"> {{ form.submitPassword.errors }}{% endblock %}
+    {% block member1 %}{{ form.member1 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.member1.errors }}{% endblock %}
+    {% block id1 %}{{ form.ID1 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.ID1.errors }}{% endblock %}
+    {% block member2 %}{{ form.member2 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.member2.errors }}{% endblock %}
+    {% block id2 %}{{ form.ID2 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.ID2.errors }}{% endblock %}
+    {% block member3 %}{{ form.member3 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.member3.errors }}{% endblock %}
+    {% block id3 %}{{ form.ID3 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.ID3.errors }}{% endblock %}
+    {% block member4 %}{{ form.member4 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.member4.errors }}{% endblock %}
+    {% block id4 %}{{ form.ID4 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.ID4.errors }}{% endblock %}
+    {% block member5 %}{{ form.member5 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.member5.errors }}{% endblock %}
+    {% block id5 %}{{ form.ID5 }}
+        <span class="form-key" style="font-size: 15px"> {{ form.ID5.errors }}{% endblock %}
+
+
+    {% block showTeam %}
+        {% for i in team %}
+        <div class="parCon" dName="请输入队名ID">
+            <div class="parTeam">
+                <span>{{ i.teamName }}</span>
+                <hr />
+                <span>{{ i.member1 }}</span>
+                <span>{% if i.whetherSubmit %}已提交{% endif %}</span>
+                <span>{% if not i.whetherSubmit %}未提交{% endif %}</span>
+            </div>
+            <a href="javascript:;" class="parBut">提交作品</a>
+
+        </div>
+        {% endfor %}
+    {% endblock %}
+
+
+
+
