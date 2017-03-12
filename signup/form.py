@@ -21,9 +21,9 @@ def validate_phone(phone):
     if not re.match(pattern, phone):
         raise ValidationError('请填正确的手机号！')
 class submitForm(forms.Form):
-    
 
-    teamName = forms.CharField(label='队伍名称', max_length=25)
+
+    teamName = forms.CharField(label='队伍名称', max_length=10)
     phone = forms.CharField(label='联系方式', max_length=11,
                             validators=[validate_phone])
     email = forms.CharField(label='联系邮箱',
@@ -35,19 +35,19 @@ class submitForm(forms.Form):
                                      validators=[MinLengthValidator(6, '密码长度至少为六')]
                                      )
 
-    member1 = forms.CharField(label='姓名', max_length=12, validators=[validate_member_name])
+    member1 = forms.CharField(label='姓名', max_length=9, validators=[validate_member_name])
     ID1 = forms.CharField(label='学号', max_length=13, validators=[validate_id])
 
-    member2 = forms.CharField(label='姓名', max_length=12,required= False, validators=[validate_member_name])
+    member2 = forms.CharField(label='姓名', max_length=9,required= False, validators=[validate_member_name])
     ID2 = forms.CharField(label='学号', max_length=13,required= False, validators=[validate_id])
 
-    member3 = forms.CharField(label='姓名', max_length=12,required= False, validators=[validate_member_name])
+    member3 = forms.CharField(label='姓名', max_length=9,required= False, validators=[validate_member_name])
     ID3 = forms.CharField(label='学号', max_length=13,required= False, validators=[validate_id])
 
-    member4 = forms.CharField(label='姓名', max_length=12,required= False, validators=[validate_member_name])
+    member4 = forms.CharField(label='姓名', max_length=9,required= False, validators=[validate_member_name])
     ID4 = forms.CharField(label='学号', max_length=13,required= False, validators=[validate_id])
 
-    member5 = forms.CharField(label='姓名', max_length=12,required= False, validators=[validate_member_name])
+    member5 = forms.CharField(label='姓名', max_length=9,required= False, validators=[validate_member_name])
     ID5 = forms.CharField(label='学号', max_length=13,required= False, validators=[validate_id])
 
     def clean_teamName(self):

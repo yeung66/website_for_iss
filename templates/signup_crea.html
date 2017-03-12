@@ -1,55 +1,88 @@
 {% extends 'SoftCrea.html' %}
 
-{% block type %}creativity{% endblock %}
-{% block state %}{{ state }}{% endblock %}
+
 
 
     {% block teamname %}{{ form.teamName }}
-        <span class="form-key" style="font-size: 10px"> {{ form.teamName.errors }}</span>{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="teamName" name="fk"> {{ form.teamName.errors }}</span>{% endblock %}
     {% block phone %}{{ form.phone }}
-        <span class="form-key" style="font-size: 15px"> {{ form.phone.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="phone" name="fk"> {{ form.phone.errors }}{% endblock %}
     {% block email %}{{ form.email }}
-        <span class="form-key" style="font-size: 15px"> {{ form.email.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="email" name="fk"> {{ form.email.errors }}{% endblock %}
     {% block password %}{{ form.submitPassword }}
-        <span class="form-key" style="font-size: 15px"> {{ form.submitPassword.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="submitPassword" name="fk"> {{ form.submitPassword.errors }}{% endblock %}
     {% block member1 %}{{ form.member1 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.member1.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="member1" name="fk"> {{ form.member1.errors }}{% endblock %}
     {% block id1 %}{{ form.ID1 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.ID1.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="ID1" name="fk"> {{ form.ID1.errors }}{% endblock %}
     {% block member2 %}{{ form.member2 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.member2.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="member2" name="fk"> {{ form.member2.errors }}{% endblock %}
     {% block id2 %}{{ form.ID2 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.ID2.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="ID2" name="fk"> {{ form.ID2.errors }}{% endblock %}
     {% block member3 %}{{ form.member3 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.member3.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="member3" name="fk"> {{ form.member3.errors }}{% endblock %}
     {% block id3 %}{{ form.ID3 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.ID3.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="ID3" name="fk"> {{ form.ID3.errors }}{% endblock %}
     {% block member4 %}{{ form.member4 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.member4.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="member3" name="fk"> {{ form.member4.errors }}{% endblock %}
     {% block id4 %}{{ form.ID4 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.ID4.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="ID4" name="fk"> {{ form.ID4.errors }}{% endblock %}
     {% block member5 %}{{ form.member5 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.member5.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="member5" name="fk"> {{ form.member5.errors }}{% endblock %}
     {% block id5 %}{{ form.ID5 }}
-        <span class="form-key" style="font-size: 15px"> {{ form.ID5.errors }}{% endblock %}
+        <span class="form-key" style="font-size: 15px" id="ID5" name="fk"> {{ form.ID5.errors }}{% endblock %}
 
 
-    {% block showTeam %}
-        {% for i in team %}
+
+
+{% block showTeam %}
+    <div id="accept" class="creativity" >
+        {% if not team_crea %}还没有队伍来报名，快乐抢沙发吧！{% endif %}
+        {% for i in team_crea %}
         <div class="parCon" dName="请输入队名ID">
             <div class="parTeam">
                 <span>{{ i.teamName }}</span>
                 <hr />
                 <span>{{ i.member1 }}</span>
-                <span>{% if i.whetherSubmit %}已提交{% endif %}</span>
-                <span>{% if not i.whetherSubmit %}未提交{% endif %}</span>
+                {% if i.whetherSubmit %}<span>已提交</span>{% endif %}
+                {% if not i.whetherSubmit %}<span>未提交</span>{% endif %}
             </div>
             <a href="javascript:;" class="parBut">提交作品</a>
-
         </div>
         {% endfor %}
-    {% endblock %}
 
+    </div>
+    <div id="accept" class="phone" style="display: none" >
+        {% if not team_phone %}还没有队伍来报名，快乐抢沙发吧！{% endif %}
+        {% for i in team_phone %}
+        <div class="parCon" dName="请输入队名ID">
+            <div class="parTeam">
+                <span>{{ i.teamName }}</span>
+                <hr />
+                <span>{{ i.member1 }}</span>
+                {% if i.whetherSubmit %}<span>已提交</span>{% endif %}
+                {% if not i.whetherSubmit %}<span>未提交</span>{% endif %}
+            </div>
+            <a href="javascript:;" class="parBut">提交作品</a>
+        </div>
+        {% endfor %}
 
+    </div>
+    <div id="accept" class="marathon" style="display: none" >
+        {% if not team_malasong %}还没有队伍来报名，快乐抢沙发吧！{% endif %}
+        {% for i in team_malasong %}
+        <div class="parCon" dName="请输入队名ID">
+            <div class="parTeam">
+                <span>{{ i.teamName }}</span>
+                <hr />
+                <span>{{ i.member1 }}</span>
+                {% if i.whetherSubmit %}<span>已提交</span>{% endif %}
+                {% if not i.whetherSubmit %}<span>未提交</span>{% endif %}
+            </div>
+            <a href="javascript:;" class="parBut">提交作品</a>
+        </div>
+        {% endfor %}
 
+    </div>
+{% endblock %}
 

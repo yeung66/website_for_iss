@@ -6,8 +6,8 @@
 -->
 <html>
 	<head>
-		{% load staticfiles %}
-        <title>软件文化节</title>
+        {% load staticfiles %}
+		<title>软件文化节</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -16,14 +16,15 @@
 		<script src="{% static "js/skel.min.js" %}"></script>
 		<script src="{% static "js/skel-panels.min.js" %}"></script>
 		<script src="{% static "js/init.js" %}"></script>
-		<!--<noscript>-->
-			<!--<link rel="stylesheet" href="{% static "css/skel-noscript.css" %}" />-->
-			<!--<link rel="stylesheet" href="{% static "css/style.css" %}" />-->
-			<!--<link rel="stylesheet" href="{% static "css/style-desktop.css" %}" />-->
-		<!--</noscript>-->
+		<noscript>
+			<link rel="stylesheet" href="{% static "css/skel-noscript.css" %}" />
+			<link rel="stylesheet" href="{% static "css/style.css" %}" />
+			<link rel="stylesheet" href="{% static "css/style-desktop.css" %}" />
+		</noscript>
 
 
 		<link href="{% static "css/index.css" %}" rel="stylesheet" type="text/css">
+
 
 		<style>
 			@media (min-width: 500px) {
@@ -66,7 +67,7 @@
 					<li><a href="{% url 'intro_hack' %}">Hackathon</a></li>
 				</ul>
 		</div>
-
+	</div>
 	<!-- Header -->
 	<!-- Header -->
 		<div id="header">
@@ -76,9 +77,9 @@
 				<nav id="nav">
 					<ul>
 						<li class="active"><a href="{% url 'index' %}">Homepage</a></li>
-						<li><a href="{% url 'intro_creativity' %}">Creativity</a></li>
-						<li><a href="{% url 'intro_mobile' %}">Mobile-coding</a></li>
-						<li><a href="{% url 'intro_hack' %}">Hackathon</a></li>
+					<li><a href="{% url 'intro_creativity' %}">Creativity</a></li>
+					<li><a href="{% url 'intro_mobile' %}">Mobile-coding</a></li>
+					<li><a href="{% url 'intro_hack' %}">Hackathon</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -105,19 +106,20 @@
 					<h2 id="title2">我们等你，用代码开启世界</h2>
 				</header>
 				<div class="signup">
-					<a href="{% url 'signup_crea' %}">我要报名</a>
+					<a href="{% url 'signup' %}">我要报名</a>
 				</div>
 				<!--<p>This is <strong>Linear</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p>-->
 				<hr id="hr"/>
 				<div class="row">
 					<section class="4u">
 						<!--<span class="pennant"><span class="fa fa-briefcase"></span></span>-->
+						<br/>
 						<img src="{% static "image/logo1.png" %}" id="logo1">
 						<h3>Creativity</h3>
 						<p class="info">
 							释放你的想法<br/>
 							用灵感冲刷<br/>
-							让创意崩腾<br/>
+							让创意奔腾<br/>
 							在这里<br/>
 							开启你想象中的软件世界</p>
 						<a href="Creativity.html" class="button button-style1">Read More</a>
@@ -128,11 +130,11 @@
 						<!--<span class="pennant"><span class="fa fa-lock"></span></span>-->
 						<img src="{% static "image/logo2.png" %}" id="logo2">
 						<h3>Mobile-coding</h3>
-						<p class="info">释放你的想法<br/>
-							用灵感冲刷<br/>
-							让创意崩腾<br/>
-							在这里<br/>
-							开启你想象中的软件世界</p>
+						<p class="info"style="margin-bottom: 30px">指尖上的键盘
+							<br/>舞动中的人生
+							<br/>在这里
+							<br/>书写属于自己的创意软件<br/>
+						</p>
 						<a href="Mobile-coding.html" class="button button-style1">Read More</a>
 						<br class="br"/>
 						<a href="Notice2.html" class="button button-style1" style="padding: 0.8em 3em">Notice</a>
@@ -141,11 +143,12 @@
 						<!--<span class="pennant"><span class="fa fa-globe"></span></span>-->
 						<img src="{% static "image/logo3.png" %}" id="logo3">
 						<h3>Hackathon</h3>
-						<p class="info">释放你的想法<br/>
-							用灵感冲刷<br/>
-							让创意崩腾<br/>
-							在这里<br/>
-							开启你想象中的软件世界</p>
+						<p class="info">将后背交给队友
+							<br/>0 error
+							<br/>0 warning
+							<br/>在这里
+							<br/>品味极限编程的无穷魅力
+						</p>
 						<a href="Hackathon.html" class="button button-style1">Read More</a>
 						<br class="br"/>
 						<a href="Notice3.html" class="button button-style1" style="padding: 0.8em 3em">Notice</a>

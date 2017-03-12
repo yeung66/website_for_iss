@@ -17,7 +17,7 @@ class Team(models.Model):
 
     member1 = models.CharField(max_length=12)
     ID1 = models.CharField(max_length=13)
-    department1 = models.CharField(max_length=25)
+    department1 = models.CharField(max_length=25, blank=True, null=True)
 
     member2 = models.CharField(max_length=12, blank=True)
     ID2 = models.CharField(max_length=13, blank=True)

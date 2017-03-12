@@ -27,9 +27,9 @@ urlpatterns = [
     url(r'^Notice1', notice_crea, name='notice_crea'),
     url(r'^Notice2', notice_mobile, name='notice_mobile'),
     url(r'^Notice3', notice_hack, name='notice_hack'),
-
+    url(r'^signup$',signup, name='signup'),
     url(r'^submitWork', submitWork, name='submitWork'),
     url(r'^signup_crea', signup_crea, name='signup_crea'),
     url(r'^signup_malasong', signup_malasong, name='signup_malasong'),
-    url(r'signup_shouji', signup_shouji, name='signup_shouji'),
+    url(r'^signup_shouji', signup_shouji, name='signup_shouji'),
 ]

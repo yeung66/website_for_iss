@@ -6,8 +6,8 @@
 -->
 <html>
 	<head>
-		{% load static %}
-        <title>Creativity</title>
+		{% load staticfiles %}
+        <title>Hackthon</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -105,35 +105,54 @@
 						<hr  class="hr"/>
 						<!--<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>-->
 					</header>
-						<p class="text">当今社会，人们的许多日常生活活动都有软件来帮助完成， 市场上各类软件也是层出不穷。然而随着人们需求的进一步丰富化， 还有许多方面具有很强的软件的开发价值。基于这种情况， 相信学习软件专业的各位同学都产生过想要自己做一个软件来方便自己或者家人的想法。 针对这些想法，我们特举办本次软件创意大赛，为全校同学提供一个大胆创新、展示自我的机会， 将自己的创意具体化，实践化，通过与其他同学合作，做出一款属于自己的创意软件。</p>
+						<p class="text" style="text-indent: 2em">随着计算机、手机对于人们生活的重要性的日益增加，
+							深入了解和学习软件相关的知识显得愈加重要。软件文化节作为武汉大学历年来的传统活动
+							，致力于帮助在校学生更加全面的体会软件领域的方方面面，向全校师生展现软件文化的魅力。
+							第十届软件文化节，总结以往的举办经验，特增设了极限编程大赛活动。
+							旨在以一种趣味活动的方式向全校师生展现编程的魅力，吸引更多同学参加到软件文化节中来。</p>
 						<br/>
 					<header>
 					<h2 class="text">活动流程</h2>
 						<hr  class="hr"/>
 					<!--<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>-->
 					</header>
-					<p class="text">1、3月20日至3月24日在全校范围内进行宣传并开放软件文化节官网接受报名，同时建好官方QQ群。<br/>
-						2、3月27日至4月5日，参赛人员根据模板（给出模板，见附录一）写一份文档，以“创意大赛-队伍名-队长姓名-发送时间”的命名格式发送到指定邮箱中。安排人员记录作品提交情况，并及时在官网和官方QQ群公布提交情况。<br/>
-						3、4月5日晚23：59分截止提交作品。<br/>
-						4、4月5日至4月7日，组织评委对各个团队的作品进行初步评分，检查是否满足参赛要求，决定复赛名单。<br/>
-						5、4月7日确认并公布复审名单（共10队）。短信通知进入复审的团队进行答辩准备。（复赛答辩流程见详情见附录一）。<br/>
-						6、4月15日进行复赛答辩，选手代表现场演讲，最后根据评委评分顺序确定奖项并进行颁奖。</p>
+					<p class="text">1、4月3日，报名通道开启。<br/>
+						2、4月14日，报名截止。<br/>
+						3、4月16日上午九点，活动正式开始，同时公布活动主题。<br/>
+						4、4月16日晚八点，作品提交截止，提交作品的小组进行作品展示。
+					</p>
 					<br/>
 					</header>
 
 					<header>
-						<h2>作品要求</h2>
+						<h2>活动说明</h2>
 						<hr  class="hr"/>
 						<!--<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>-->
 					</header>
-					<p>1、作品内容健康，丰富科学，结构清晰、新颖，想法贴近实际。不得违反国家的有关法律、法规和规定。<br/>
-						2、作品为软件创意，包含详细的用户需求介绍、功能和使用方法介绍、设计思路、完整的用户界面设计，若是市场上已经具备相似的同类软件则需具备优于市场上已有同类软件之处。<br/>
-						3、提交内容为相关文档，作者应自行保留备份，提交的作品组委会不予退回。<br/>
-						4、作品须为原创作品，如发现作品中有抄袭的部分，一经发现，组委会将取消参赛者的评奖资格。</p>
+					<p>1、组委会将为参赛选手准备小零食与饮料，早晚餐请选手自行解决。<br/>
+						2、在截止日期之前可多次提交作品，以最后一次提交作品为准。<br/>
+						3、所有完成作品的小组都将获得小礼品一份。
+					</p>
+					<br/>
+					</header>
+
+					<header>
+						<h2>注意事项（报名须知）</h2>
+						<hr  class="hr"/>
+						<!--<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>-->
+					</header>
+					<p>1、本次大赛以个人或小组形式参赛，小组成员最多不超过5人（注：小组成员一经确认，活动期间不能随意更改。）<br/>
+						2.、报名时请填好小组成员的详细信息资料（姓名，院系以及联系方式）。<br/>
+						3、报名的小组在活动当天参加活动，活动结束时将作品提交至相关工作人员。
+						（注意：未提交作品的小组视为弃权）
+					</p>
 					</header>
 
 					<div class="signup">
-						<a href="{% url 'signup_malasong' %}">Sign up</a>
+						<a href="javascript:;" onclick="change()">Sign up</a>
+					</div>
+					<div class="signup">
+						<a href="{% url 'notice_hack' %}" id="signup">Notice</a>
 					</div>
 				</section>
 			</div>
@@ -151,3 +170,10 @@
 
 	</body>
 </html>
+<script>
+    function change() {
+        window.location.href='{% url 'signup' %}?flag2=true'
+
+
+    }
+</script>
