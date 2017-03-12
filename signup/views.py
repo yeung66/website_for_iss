@@ -1,12 +1,16 @@
 #coding:utf-8
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from models import Team
+from models import Team, Time, Message
 from form import submitForm
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 
+
 # Create your views here.
+time1 = Time.objects.get(type='软件创意大赛')
+time2 = Time.objects.get(type='手机编程大赛')
+time3 = Time.objects.get(type='马拉松')
 
 def index(request):
     return render(request, 'index.html')
@@ -21,18 +25,21 @@ def intro_hack(request):
     return render(request, 'Hackathon.html')
 
 def notice_crea(request):
-    return render(request, 'Notice1.html')
+    message = Message.objects.filter(type='软件创意大赛')
+    return render(request, 'Notice1.html',{'msg':message})
 
 def notice_mobile(request):
-    return render(request, "Notice2.html")
+    message = Message.objects.filter(type='手机编程大赛')
+    return render(request, "Notice2.html",{'msg':message})
 
 def notice_hack(request):
-    return render(request, 'Notice3.html')
+    message = Message.objects.filter(type='马拉松')
+    return render(request, 'Notice3.html',{'msg':message})
 
 
 def signup_crea(request):
-    start_time = datetime.strptime('2017-03-12','%Y-%m-%d')
-    end_time = datetime.strptime('2017-04-01','%Y-%m-%d')
+    start_time = datetime.strptime(time1.signup_start,'%Y-%m-%d')
+    end_time = datetime.strptime(time2.signup_end,'%Y-%m-%d')
     if (start_time>datetime.now()) or (datetime.now()>end_time):
         return JsonResponse({'msg':'当前不在报名时间内'})
 
@@ -72,8 +79,8 @@ def signup_crea(request):
     return JsonResponse(form.errors)
 
 def signup_shouji(request):
-    start_time = datetime.strptime('2017-03-17', '%Y-%m-%d')  # 时间为2016年3月9日0点，根据格式替换
-    end_time = datetime.strptime('2017-04-24', '%Y-%m-%d')
+    start_time = datetime.strptime(time2.signup_start, '%Y-%m-%d')  # 时间为2016年3月9日0点，根据格式替换
+    end_time = datetime.strptime(time2.signup_end, '%Y-%m-%d')
     if (start_time > datetime.now()) or (datetime.now() > end_time):
         return JsonResponse({'msg': '当前不在报名时间内'})
 
@@ -114,8 +121,8 @@ def signup_shouji(request):
 
 
 def signup_malasong(request):
-    start_time = datetime.strptime('2017-04-03', '%Y-%m-%d')
-    end_time = datetime.strptime('2017-04-14', '%Y-%m-%d')
+    start_time = datetime.strptime(time3.signup_start, '%Y-%m-%d')
+    end_time = datetime.strptime(time3.signup_end, '%Y-%m-%d')
     if (start_time > datetime.now()) or (datetime.now() > end_time):
         return JsonResponse({'msg': '当前不在报名时间内'})
 
@@ -173,11 +180,11 @@ def submitWork(request):
     password = request.POST.get('submitPassword2')
     URL = request.POST.get('URL')
     sharePassword = request.POST.get('sharePassword')
-    starttime={u'软件创意大赛':'2017-03-20', u'手机编程大赛':'2017-03-27', u'马拉松':'2017-03-10'}
-    endtime = {u'软件创意大赛':'2017-04-01', u'手机编程大赛': '2017-04-24', u'马拉松': '2017-03-11'}
+    starttime={u'软件创意大赛':time1.submit_start, u'手机编程大赛':time2.submit_start, u'马拉松':time3.submit_start}
+    endtime = {u'软件创意大赛':time1.submit_end, u'手机编程大赛': time2.submit_end, u'马拉松': time3.submit_end}
     try:
         a = Team.objects.get(teamName=teamName)
-        start = datetime.strptime(starttime[a.type], '%Y-%m-%d')  # 为这天的零点
+        start = datetime.strptime(starttime[a.type], '%Y-%m-%d')
         end = datetime.strptime(endtime[a.type], '%Y-%m-%d')
         if (datetime.now() < start) or (datetime.now() > end):
             return JsonResponse({'msg':'不在提交时间内'})

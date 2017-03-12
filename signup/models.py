@@ -41,3 +41,25 @@ class Team(models.Model):
 
     def __unicode__(self):
         return self.teamName
+
+
+
+class Time(models.Model):
+    type = models.CharField(u'比赛类别',max_length=20)
+    signup_start = models.CharField(u'报名开始时间',max_length=20,blank=True)
+    signup_end = models.CharField(u'报名结束时间',max_length=20,blank=True)
+    submit_start = models.CharField(u'提交作品开始时间',max_length=20,blank=True)
+    submit_end = models.CharField(u'提交作品结束时间',max_length=20,blank=True)
+
+
+    def __unicode__(self):
+        return self.type
+
+class Message(models.Model):
+    type=models.CharField(max_length=10,blank=True)
+    title = models.CharField(max_length=40)
+    text = models.TextField(max_length=400)
+    date = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.title

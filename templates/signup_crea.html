@@ -41,7 +41,7 @@
         {% for i in team_crea %}
         <div class="parCon" dName="请输入队名ID">
             <div class="parTeam">
-                <span>{{ i.teamName }}</span>
+                <span style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap">{{ i.teamName }}</span>
                 <hr />
                 <span>{{ i.member1 }}</span>
                 {% if i.whetherSubmit %}<span>已提交</span>{% endif %}
@@ -57,7 +57,7 @@
         {% for i in team_phone %}
         <div class="parCon" dName="请输入队名ID">
             <div class="parTeam">
-                <span>{{ i.teamName }}</span>
+                <span style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap">{{ i.teamName }}</span>
                 <hr />
                 <span>{{ i.member1 }}</span>
                 {% if i.whetherSubmit %}<span>已提交</span>{% endif %}
@@ -73,7 +73,7 @@
         {% for i in team_malasong %}
         <div class="parCon" dName="请输入队名ID">
             <div class="parTeam">
-                <span>{{ i.teamName }}</span>
+                <span style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap">{{ i.teamName }}</span>
                 <hr />
                 <span>{{ i.member1 }}</span>
                 {% if i.whetherSubmit %}<span>已提交</span>{% endif %}

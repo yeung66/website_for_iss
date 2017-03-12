@@ -23,7 +23,7 @@ def validate_phone(phone):
 class submitForm(forms.Form):
 
 
-    teamName = forms.CharField(label='队伍名称', max_length=10)
+    teamName = forms.CharField(label='队伍名称', max_length=20)
     phone = forms.CharField(label='联系方式', max_length=11,
                             validators=[validate_phone])
     email = forms.CharField(label='联系邮箱',

@@ -481,7 +481,7 @@ label[data-state="else"] .else{
                             <div class="liMem">
                                 <label>
                                     <span class="form-key">学院 * </span>
-                                     <select class="hidden-input" name="department1" style="display: inline;" >
+                                     <select class="hidden-input" name="department1" required style="display: inline;" >
                                         <option value="" selected="selected" disabled="disabled"></option>
                                         <option value="国际软件学院">国际软件学院</option>
                                          <option value="计算机学院">计算机学院</option>
@@ -899,9 +899,16 @@ label[data-state="else"] .else{
                 }else{
                     alert(data.msg);
                     document.body.setAttribute("data-state", "normal");
-                    if (data.type1=='软件创意大赛'){location.reload();}
-                    if (data.type1=='手机编程大赛'){window.location.href='{% url 'signup' %}#flag1';location.reload()}
-                    if (data.type1=='马拉松'){window.location.href='{% url 'signup' %}#flag2';location.reload()}
+                    if(data.type1=='软件创意大赛'){
+                        location.replace('{% url "signup" %}')
+                    }
+                    if(data.type1=='手机编程大赛'){
+                        location.replace('{% url "signup" %}#flag1')
+
+                    }
+                    if(data.type1=='马拉松'){
+                        location.replace('{% url "signup" %}#flag2')
+                    }
                 }
             }
         });
@@ -930,9 +937,15 @@ label[data-state="else"] .else{
                     for (var cout1 = 1; cout1 <= 14; cout1++) {
                             $("[name=fk]").empty()
                         }
-                    if(data.type=='软件创意大赛'){location.reload()}
-                    if(data.type=='手机编程大赛'){window.location.href='{% url "signup" %}#flag1';location.reload()}
-                    if(data.type=='马拉松'){window.location.href='{% url "signup" %}#flag2';location.reload()}
+                    if(data.type=='软件创意大赛'){
+                       location.replace('{% url "signup" %}')
+                    }
+                    if(data.type=='手机编程大赛'){
+                        location.replace('{% url "signup" %}#flag1')
+                    }
+                    if(data.type=='马拉松'){
+                        location.replace('{% url "signup" %}#flag2')
+                    }
 
                 }
                 if (tem==0){
