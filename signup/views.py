@@ -8,9 +8,15 @@ from datetime import datetime
 
 
 # Create your views here.
-time1 = Time.objects.get(type='软件创意大赛')
-time2 = Time.objects.get(type='手机编程大赛')
-time3 = Time.objects.get(type='马拉松')
+time1 = None
+time2 = None
+time3 = None
+
+def updateTime():
+    global time1,time2,time3
+    time1 = Time.objects.get(type='软件创意大赛')
+    time2 = Time.objects.get(type='手机编程大赛')
+    time3 = Time.objects.get(type='马拉松')
 
 def index(request):
     return render(request, 'index.html')
@@ -38,6 +44,7 @@ def notice_hack(request):
 
 
 def signup_crea(request):
+    updateTime()
     start_time = datetime.strptime(time1.signup_start,'%Y-%m-%d')
     end_time = datetime.strptime(time2.signup_end,'%Y-%m-%d')
     if (start_time>datetime.now()) or (datetime.now()>end_time):
@@ -79,6 +86,7 @@ def signup_crea(request):
     return JsonResponse(form.errors)
 
 def signup_shouji(request):
+    updateTime()
     start_time = datetime.strptime(time2.signup_start, '%Y-%m-%d')  # 时间为2016年3月9日0点，根据格式替换
     end_time = datetime.strptime(time2.signup_end, '%Y-%m-%d')
     if (start_time > datetime.now()) or (datetime.now() > end_time):
@@ -121,6 +129,7 @@ def signup_shouji(request):
 
 
 def signup_malasong(request):
+    updateTime()
     start_time = datetime.strptime(time3.signup_start, '%Y-%m-%d')
     end_time = datetime.strptime(time3.signup_end, '%Y-%m-%d')
     if (start_time > datetime.now()) or (datetime.now() > end_time):
@@ -176,6 +185,7 @@ def signup(request):
 
 
 def submitWork(request):
+    updateTime()
     teamName=request.POST.get('teamName2')
     password = request.POST.get('submitPassword2')
     URL = request.POST.get('URL')
@@ -202,3 +212,5 @@ def submitWork(request):
     msg = '提交成功'
     type1 = a.type
     return JsonResponse({'msg':msg,'type1':type1})
+
+
