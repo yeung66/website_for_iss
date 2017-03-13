@@ -56,7 +56,13 @@ class Time(models.Model):
         return self.type
 
 class Message(models.Model):
-    type=models.CharField(max_length=10,blank=True)
+    choice = (
+        ('软件创意大赛','软件创意大赛'),
+        ('手机编程大赛', '手机编程大赛'),
+        ('马拉松', '马拉松'),
+    )
+
+    type=models.CharField(choices=choice, max_length=12)
     title = models.CharField(max_length=40)
     text = models.TextField(max_length=400)
     date = models.CharField(max_length=20)
