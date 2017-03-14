@@ -19,7 +19,7 @@ def validate_id(id):
 def validate_phone(phone):
     pattern =re.compile(r"^1[34578]\d{9}$")
     if not re.match(pattern, phone):
-        raise ValidationError('请填正确的手机号！')
+        raise ValidationError('请填正确的手机号')
 class submitForm(forms.Form):
 
 
@@ -28,7 +28,7 @@ class submitForm(forms.Form):
                             validators=[validate_phone])
     email = forms.CharField(label='联系邮箱',
                             max_length=25,
-                            validators=[EmailValidator('请输入正确的邮箱!')])
+                            validators=[EmailValidator('请输入正确的邮箱')])
     submitPassword = forms.CharField(label='提交密码',
                                      max_length=20,
                                      widget=forms.PasswordInput(),
