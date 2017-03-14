@@ -903,11 +903,14 @@ label[data-state="else"] .else{
                         location.replace('{% url "signup" %}')
                     }
                     if(data.type1=='手机编程大赛'){
-                        location.replace('{% url "signup" %}#flag1')
+                        if (window.location.href.indexOf('flag')!=-1){location.replace('{% url "signup" %}#flag1')}
+                        else{location.replace('{% url "signup" %}#flag1');location.reload()}
+                    }
 
                     }
                     if(data.type1=='马拉松'){
-                        location.replace('{% url "signup" %}#flag2')
+                        if (window.location.href.indexOf('flag')!=-1){location.replace('{% url "signup" %}#flag2')}
+                        else{location.replace('{% url "signup" %}#flag2');location.reload()}
                     }
                 }
             }
@@ -941,10 +944,12 @@ label[data-state="else"] .else{
                        location.replace('{% url "signup" %}')
                     }
                     if(data.type=='手机编程大赛'){
-                        location.replace('{% url "signup" %}#flag1')
+                        if (window.location.href.indexOf('flag')!=-1){location.replace('{% url "signup" %}#flag1')}
+                        else{location.replace('{% url "signup" %}#flag1');location.reload()}
                     }
                     if(data.type=='马拉松'){
-                        location.replace('{% url "signup" %}#flag2')
+                        if (window.location.href.indexOf('flag')!=-1){location.replace('{% url "signup" %}#flag2')}
+                        else{location.replace('{% url "signup" %}#flag2');location.reload()}
                     }
 
                 }
