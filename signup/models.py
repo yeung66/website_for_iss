@@ -64,7 +64,7 @@ class Message(models.Model):
 
     type=models.CharField(choices=choice, max_length=12)
     title = models.CharField(max_length=40)
-    text = models.TextField(max_length=400)
+    text = models.TextField(max_length=1000)
     date = models.CharField(max_length=20)
 
     def __unicode__(self):
