@@ -312,6 +312,14 @@
             transform:none;
         }
 
+pre{
+white-space: pre-wrap;
+white-space: -moz-pre-wrap;
+white-space: -pre-wrap;
+white-space: -o-pre-wrap;
+word-wrap: break-word;
+}
+
 
 
 
@@ -405,7 +413,7 @@
                 <br>
             <h4>{{ i.title }}</h4>
             <hr />
-            <pre><p id="text">{{ i.text|safe }}</p></pre>
+            <pre><p id="text">{{ i.text |safe}}</p></pre>
             <p id="time">{{ i.date }}</p>
                 <br>
                 <br>
