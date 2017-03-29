@@ -21,19 +21,19 @@ class Team(models.Model):
 
     member2 = models.CharField(max_length=12, blank=True)
     ID2 = models.CharField(max_length=13, blank=True)
-    department2 = models.CharField(max_length=25, blank=True)
+    department2 = models.CharField(max_length=25, blank=True, null=True)
 
     member3 = models.CharField(max_length=12, blank=True)
     ID3 = models.CharField(max_length=13, blank=True)
-    department3 = models.CharField(max_length=25, blank=True)
+    department3 = models.CharField(max_length=25, blank=True, null=True)
 
     member4 = models.CharField(max_length=12, blank=True)
     ID4 = models.CharField(max_length=13, blank=True)
-    department4 = models.CharField(max_length=25, blank=True)
+    department4 = models.CharField(max_length=25, blank=True, null=True)
 
     member5 = models.CharField(max_length=12, blank=True)
     ID5 = models.CharField(max_length=13, blank=True)
-    department5 = models.CharField(max_length=25, blank=True)
+    department5 = models.CharField(max_length=25, blank=True, null=True)
 
     #submit
     URL = models.URLField(max_length=100, blank=True)
