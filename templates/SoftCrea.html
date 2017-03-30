@@ -111,9 +111,11 @@
         }
         .navAf{
             left:1px;
+
         }
         .nav a:hover{
-            background-color: #55606a;
+            background-color: #8594a2;
+            color:white;
         }
         .content{
             position:relative;
@@ -266,9 +268,7 @@
             font-size:26px;
             transition:all 0.25s;
         }
-        .nav a:hover{
-            color:white;
-        }
+
         .ep2{background:url("{% static "image/logo2.png" %}")}
         .ep3{background:url("{% static 'image/logo3.png' %}")}
         .ep{
@@ -905,9 +905,8 @@ label[data-state="else"] .else{
                     if(data.type1=='手机编程大赛'){
                         if (window.location.href.indexOf('flag')!=-1){location.replace('{% url "signup" %}#flag1')}
                         else{location.replace('{% url "signup" %}#flag1');location.reload()}
-                    }
 
-                    
+                    }
                     if(data.type1=='马拉松'){
                         if (window.location.href.indexOf('flag')!=-1){location.replace('{% url "signup" %}#flag2')}
                         else{location.replace('{% url "signup" %}#flag2');location.reload()}
@@ -997,6 +996,8 @@ label[data-state="else"] .else{
         }
     </script>
 
+
+
     <script>
         function changeClick(thf) {
             var tt = thf.getAttribute("data-target");
@@ -1005,16 +1006,47 @@ label[data-state="else"] .else{
                 document.getElementById("form").setAttribute("action", thf.getAttribute("acTarget"));
                 if (tt =='creativity'){
                     document.getElementsByClassName('creativity')[0].style.display='block';
-                    document.getElementById('guize').setAttribute('href', '{% url 'intro_creativity' %}')
+                    document.getElementById('guize').setAttribute('href', '{% url 'intro_creativity' %}');
+                    $('.navAf').css({
+                        'background-color':'#55606a',
+                        'color':'white'
+                    })
                 }
-                else{document.getElementsByClassName('creativity')[0].style.display='none';}
+                else{
+                    document.getElementsByClassName('creativity')[0].style.display='none';
+                    $('.navAf').css({
+                        'background-color':'',
+                        'color':''
+                    })
+                }
                 if (tt =='phone'){
                     document.getElementsByClassName('phone')[0].style.display='block';
-                    document.getElementById('guize').setAttribute('href', '{% url 'intro_mobile' %}')}
-                else{document.getElementsByClassName('phone')[0].style.display='none'}
+                    document.getElementById('guize').setAttribute('href', '{% url 'intro_mobile' %}');
+                    $('#w').css({
+                        'background-color':'#55606a',
+                        'color':'white'
+                    })
+                }
+                else{
+                    document.getElementsByClassName('phone')[0].style.display='none';
+                    $('#w').css({
+                        'background-color':'',
+                        'color':''
+                    })
+                }
                 if (tt =='marathon'){document.getElementsByClassName('marathon')[0].style.display='block';
-                document.getElementById('guize').setAttribute('href', '{% url 'intro_hack' %}')}
-                else{document.getElementsByClassName('marathon')[0].style.display='none'}
+                document.getElementById('guize').setAttribute('href', '{% url 'intro_hack' %}');
+                $('#e').css({
+                        'background-color':'#55606a',
+                        'color':'white'
+                    })
+                }
+                else{document.getElementsByClassName('marathon')[0].style.display='none';
+                    $('#e').css({
+                        'background-color':'',
+                        'color':''
+                    })
+                }
             }
 
         }
@@ -1029,12 +1061,19 @@ label[data-state="else"] .else{
                 $('#w').click();
 
             }
-            if (index2 !=-1){
+            else if(index2 !=-1){
                 $("#e").click();
+            }else{
+                $('.navAf').css({
+                        'background-color':'#55606a',
+                        'color':'white'
+                    })
             }
 
          }
         link();
+
+
     </script>
 
 
