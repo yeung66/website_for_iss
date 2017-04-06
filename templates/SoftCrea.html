@@ -407,7 +407,7 @@ label[data-state="else"] .else{
                 <a class="navAf" href="javascript:;" data-target="creativity"  onclick="changeClick(this)" acTarget="{% url 'signup_crea' %}"><p class="ep1"></p><p>创意</p></a>
                 <a id="w" href="javascript:;" data-target="phone" onclick="changeClick(this)" acTarget="{% url 'signup_shouji' %}"><p class="ep ep2"></p><p>手机</p></a>
                 <a id="e" href="javascript:;" data-target="marathon"  onclick="changeClick(this)" acTarget="{% url 'signup_malasong' %}"><p class="ep ep3"></p><p>马拉松</p></a>
-                <div style="font-size: 19px;">点击上方LOGO可切换比赛类别</div>
+            <div style="font-size: 19px;">点击上方LOGO可切换比赛类别</div>
             </div>
             <header class="header">
                 <div class="title"></div>
@@ -830,7 +830,7 @@ label[data-state="else"] .else{
                 <button type="submit" class="button" >立即参加</button>
             </form>
             <div id="participate" >
-                <h5 id="flag2">参赛队伍</h5>
+                <h5 id="flag2">参赛队伍<span id="type" style="margin-left:95px;">软件创意大赛</span></h5>
                 <div id="flag1"></div>
                 <hr />
                 {% block showTeam %}
@@ -1011,7 +1011,8 @@ label[data-state="else"] .else{
                     $('.navAf').css({
                         'background-color':'#55606a',
                         'color':'white'
-                    })
+                    });
+                    document.getElementById('type').innerHTML='软件创意大赛';
                 }
                 else{
                     document.getElementsByClassName('creativity')[0].style.display='none';
@@ -1026,7 +1027,8 @@ label[data-state="else"] .else{
                     $('#w').css({
                         'background-color':'#55606a',
                         'color':'white'
-                    })
+                    });
+                    document.getElementById('type').innerHTML='手机编程大赛';
                 }
                 else{
                     document.getElementsByClassName('phone')[0].style.display='none';
@@ -1040,7 +1042,8 @@ label[data-state="else"] .else{
                 $('#e').css({
                         'background-color':'#55606a',
                         'color':'white'
-                    })
+                    });
+                    document.getElementById('type').innerHTML='编程马拉松';
                 }
                 else{document.getElementsByClassName('marathon')[0].style.display='none';
                     $('#e').css({
