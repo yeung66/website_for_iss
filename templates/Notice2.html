@@ -415,7 +415,7 @@ word-wrap: break-word;
                 <br>
             <h4>{{ i.title }}</h4>
             <hr />
-            <pre><p id="text">{{ i.text }}</p></pre>
+            <pre><p id="text">{{ i.text|safe }}</p></pre>
             <p id="time">{{ i.date }}</p>
                 <br>
                 <br>
